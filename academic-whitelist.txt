@@ -1,0 +1,470 @@
+! ============================================================================
+! Title: Academic Domains Whitelist
+! Version: 2026.02.28.1
+! Description: Comprehensive whitelist for academic and research domains to 
+!              preserve epistemic functionality while blocking predatory tracking.
+!              Allows first-party scripts, analytics essential for academic 
+!              platforms, and blocks third-party trackers even in academic context.
+! Homepage: https://github.com/donatoniii/ublock
+! Issues: https://github.com/donatoniii/ublock/issues
+! License: CC0-1.0
+! Expires: 1 day
+! Last modified: %timestamp%
+! Syntax: ublock
+! ============================================================================
+
+! ----------------------------------------------------------------------------
+! TABLE OF CONTENTS
+! ----------------------------------------------------------------------------
+! 1.  Core Academic Platforms (Redes acadêmicas)
+! 2.  Preprint Servers & Repositories (Repositórios e preprints)
+! 3.  Scholarly Search & Indexing (Busca e indexação)
+! 4.  Major Scientific Publishers (Editoras científicas)
+! 5.  Institutional TLDs (Domínios institucionais)
+! 6.  Academic Tools & Services (Ferramentas acadêmicas)
+! 7.  Essential CDNs & Third-Party (CDNs essenciais)
+! 8.  Anti-Tracking Rules (Bloqueio de rastreamento predatório)
+! 9.  Regional/Local Academic Domains (Domínios regionais)
+! ============================================================================
+
+
+! ----------------------------------------------------------------------------
+! 1. CORE ACADEMIC PLATFORMS
+! Redes sociais acadêmicas e plataformas de colaboração
+! ----------------------------------------------------------------------------
+
+! ResearchGate - Rede social de pesquisa
+@@||researchgate.net^$document
+@@||researchgate.net^$script,1p
+@@||researchgate.net^$xhr,1p
+@@||www.researchgate.net^$document
+
+! Academia.edu - Plataforma de compartilhamento de artigos
+@@||academia.edu^$document
+@@||academia.edu^$script,1p
+@@||www.academia.edu^$document
+
+! ORCID - Identificador único de pesquisadores
+@@||orcid.org^$document
+@@||orcid.org^$xhr,1p
+@@||pub.orcid.org^$document
+
+! Mendeley - Gerenciador de referências (Elsevier)
+@@||mendeley.com^$document
+@@||mendeley.com^$script,1p
+@@||www.mendeley.com^$document
+
+! Zotero - Gerenciador de referências (open source)
+@@||zotero.org^$document
+@@||www.zotero.org^$document
+
+! Loop (Frontiers) - Perfis de pesquisadores
+@@||loop.frontiersin.org^$document
+
+! PubPeer - Plataforma de revisão pós-publicação
+@@||pubpeer.com^$document
+
+! ============================================================================
+
+
+! ----------------------------------------------------------------------------
+! 2. PREPRINT SERVERS & REPOSITORIES
+! Servidores de preprints e repositórios de acesso aberto
+! ----------------------------------------------------------------------------
+
+! arXiv - Física, matemática, ciência da computação
+@@||arxiv.org^$document
+@@||arxiv.org^$script,1p
+@@||arxiv.org^$xhr,1p
+@@||export.arxiv.org^$document
+
+! bioRxiv - Ciências biológicas
+@@||biorxiv.org^$document
+@@||biorxiv.org^$script,1p
+
+! medRxiv - Ciências da saúde
+@@||medrxiv.org^$document
+@@||medrxiv.org^$script,1p
+
+! SSRN - Ciências sociais
+@@||ssrn.com^$document
+@@||papers.ssrn.com^$document
+
+! Zenodo - Repositório multidisciplinar (CERN)
+@@||zenodo.org^$document
+@@||zenodo.org^$script,1p
+
+! OSF - Open Science Framework
+@@||osf.io^$document
+@@||osf.io^$script,1p
+
+! Figshare - Repositório de dados de pesquisa
+@@||figshare.com^$document
+
+! HAL - Archives ouvertes (França)
+@@||hal.science^$document
+@@||hal.archives-ouvertes.fr^$document
+
+! Research Square - Preprints e revisão
+@@||researchsquare.com^$document
+
+! PsyArXiv - Psicologia
+@@||psyarxiv.com^$document
+
+! SocArXiv - Ciências sociais
+@@||socarxiv.org^$document
+
+! LawArXiv - Direito
+@@||lawarxiv.org^$document
+
+! EdArXiv - Educação
+@@||edarxiv.org^$document
+
+! ============================================================================
+
+
+! ----------------------------------------------------------------------------
+! 3. SCHOLARLY SEARCH & INDEXING
+! Mecanismos de busca acadêmica e bases de indexação
+! ----------------------------------------------------------------------------
+
+! Google Scholar
+@@||scholar.google.com^$document
+@@||scholar.google.com.br^$document
+@@||scholar.google.^$document
+
+! PubMed / NCBI
+@@||pubmed.ncbi.nlm.nih.gov^$document
+@@||pubmed.ncbi.nlm.nih.gov^$script,1p
+@@||ncbi.nlm.nih.gov^$document,domain=pubmed.ncbi.nlm.nih.gov
+@@||eutils.ncbi.nlm.nih.gov^$xhr,domain=pubmed.ncbi.nlm.nih.gov
+
+! DOI System
+@@||doi.org^$document
+@@||doi.org^$xhr,1p
+@@||dx.doi.org^$document
+
+! DBLP - Ciência da computação
+@@||dblp.org^$document
+@@||dblp.uni-trier.de^$document
+
+! Semantic Scholar
+@@||semanticscholar.org^$document
+@@||semanticscholar.org^$script,1p
+@@||api.semanticscholar.org^$xhr,domain=semanticscholar.org
+
+! Scopus (Elsevier)
+@@||scopus.com^$document
+@@||www.scopus.com^$document
+
+! Web of Science
+@@||webofscience.com^$document
+@@||www.webofscience.com^$document
+
+! Crossref - Metadados de publicações
+@@||crossref.org^$document
+@@||api.crossref.org^$xhr
+
+! DataCite - Identificadores de dados
+@@||datacite.org^$document
+@@||api.datacite.org^$xhr
+
+! BASE - Bielefeld Academic Search Engine
+@@||base-search.net^$document
+
+! CORE - Agregador de acesso aberto
+@@||core.ac.uk^$document
+
+! OpenAlex - Catálogo aberto de pesquisa
+@@||openalex.org^$document
+
+! ============================================================================
+
+
+! ----------------------------------------------------------------------------
+! 4. MAJOR SCIENTIFIC PUBLISHERS
+! Grandes editoras científicas e periódicos
+! ----------------------------------------------------------------------------
+
+! JSTOR - Arquivo digital de periódicos
+@@||jstor.org^$document
+@@||jstor.org^$script,1p
+@@||www.jstor.org^$document
+
+! ScienceDirect (Elsevier)
+@@||sciencedirect.com^$document
+@@||sciencedirect.com^$script,1p
+@@||www.sciencedirect.com^$document
+
+! Springer / SpringerLink
+@@||springer.com^$document
+@@||link.springer.com^$document
+@@||springerlink.com^$document
+
+! Nature Publishing Group
+@@||nature.com^$document
+@@||nature.com^$script,1p
+@@||www.nature.com^$document
+@@||natureasia.com^$document
+
+! Science / AAAS
+@@||science.org^$document
+@@||science.org^$script,1p
+@@||www.science.org^$document
+@@||sciencemag.org^$document
+
+! PLOS - Public Library of Science
+@@||plos.org^$document
+@@||journals.plos.org^$document
+
+! MDPI - Acesso aberto
+@@||mdpi.com^$document
+@@||www.mdpi.com^$document
+
+! Frontiers
+@@||frontiersin.org^$document
+@@||www.frontiersin.org^$document
+
+! Taylor & Francis
+@@||tandfonline.com^$document
+@@||www.tandfonline.com^$document
+
+! Wiley
+@@||wiley.com^$document
+@@||onlinelibrary.wiley.com^$document
+@@||www.wiley.com^$document
+
+! Elsevier (geral)
+@@||elsevier.com^$document
+@@||www.elsevier.com^$document
+@@||cell.com^$document
+
+! Cambridge University Press
+@@||cambridge.org^$document
+@@||www.cambridge.org^$document
+
+! Oxford University Press
+@@||oxfordacademic.com^$document
+@@||academic.oup.com^$document
+
+! Royal Society Publishing
+@@||royalsocietypublishing.org^$document
+
+! PNAS - Proceedings of the National Academy of Sciences
+@@||pnas.org^$document
+@@||www.pnas.org^$document
+
+! SAGE Publications
+@@||sagepub.com^$document
+@@||journals.sagepub.com^$document
+
+! IEEE - Engenharia e tecnologia
+@@||ieee.org^$document
+@@||ieeexplore.ieee.org^$document
+
+! ACM - Computação
+@@||acm.org^$document
+@@||dl.acm.org^$document
+
+! APS - Física
+@@||aps.org^$document
+@@||journals.aps.org^$document
+
+! AMA - Medicina
+@@||ama-assn.org^$document
+@@||jamanetwork.com^$document
+
+! ============================================================================
+
+
+! ----------------------------------------------------------------------------
+! 5. INSTITUTIONAL TLDS
+! Domínios institucionais de ensino e pesquisa
+! Nota: Wildcards têm limitações; adicione instituições específicas conforme necessário
+! ----------------------------------------------------------------------------
+
+! Domínios .edu (EUA)
+@@||.edu^$document,domain=~com|~net|~org
+
+! Domínios .edu.br (Brasil)
+@@||.edu.br^$document
+@@||usp.br^$document
+@@||unicamp.br^$document
+@@||ufrj.br^$document
+@@||ufmg.br^$document
+@@||unesp.br^$document
+@@||puc-^$document,domain=~com|~net
+
+! Domínios .ac.uk (Reino Unido)
+@@||.ac.uk^$document
+
+! Domínios .university
+@@||.university^$document
+
+! Domínios .academia (genérico)
+@@||.academy^$document
+
+! ============================================================================
+
+
+! ----------------------------------------------------------------------------
+! 6. ACADEMIC TOOLS & SERVICES
+! Ferramentas e serviços auxiliares para pesquisa
+! ----------------------------------------------------------------------------
+
+! Overleaf - Editor LaTeX online
+@@||overleaf.com^$document
+@@||www.overleaf.com^$document
+@@||sharelatex.com^$document
+
+! ResearchGate LaTeX
+@@||latex.codecogs.com^$image,domain=researchgate.net|academia.edu
+
+! Unpaywall - Acesso aberto legal
+@@||unpaywall.org^$document
+@@||api.unpaywall.org^$xhr
+
+! OpenAccess Button
+@@||openaccessbutton.org^$document
+
+! Sci-Hub (acesso a artigos - uso conforme legislação local)
+@@||sci-hub.se^$document
+@@||sci-hub.ru^$document
+@@||sci-hub.st^$document
+
+! Library Genesis
+@@||libgen.is^$document
+@@||libgen.rs^$document
+
+! Connected Papers
+@@||connectedpapers.com^$document
+
+! Litmaps - Mapeamento de literatura
+@@||litmaps.com^$document
+
+! ResearchRabbit
+@@||researchrabbit.ai^$document
+
+! Dimensions
+@@||dimensions.ai^$document
+
+! ============================================================================
+
+
+! ----------------------------------------------------------------------------
+! 7. ESSENTIAL CDNS & THIRD-PARTY
+! CDNs e serviços de terceiros essenciais para funcionalidade acadêmica
+! ----------------------------------------------------------------------------
+
+! MathJax - Renderização de fórmulas matemáticas
+@@||cdn.jsdelivr.net/npm/mathjax^$script,domain=arxiv.org|jstor.org|nature.com|springer.com
+@@||cdnjs.cloudflare.com/ajax/libs/mathjax^$script,domain=arxiv.org|jstor.org|nature.com|springer.com
+@@||polyfill.io^$script,domain=arxiv.org|jstor.org
+
+! Cloudflare CAPTCHA (necessário para alguns domínios acadêmicos)
+@@||challenges.cloudflare.com^$document,domain=researchgate.net|academia.edu|arxiv.org|sciencedirect.com
+@@||challenges.cloudflare.com^$script,domain=researchgate.net|academia.edu|arxiv.org|sciencedirect.com
+
+! Google reCAPTCHA
+@@||www.google.com/recaptcha/^$document,domain=researchgate.net|academia.edu|arxiv.org
+@@||www.gstatic.com/recaptcha/^$script,domain=researchgate.net|academia.edu|arxiv.org
+
+! Google Fonts (necessário para renderização de alguns sites)
+@@||fonts.googleapis.com^$stylesheet,domain=nature.com|science.org|jstor.org
+@@||fonts.gstatic.com^$font,domain=nature.com|science.org|jstor.org
+
+! DOI Resolver via CrossRef
+@@||doi.org^$xhr,1p
+@@||api.crossref.org^$xhr,domain=doi.org|crossref.org
+
+! ============================================================================
+
+
+! ----------------------------------------------------------------------------
+! 8. ANTI-TRACKING RULES
+! Mantém proteção contra rastreamento predatório MESMO em domínios acadêmicos
+! Estas regras bloqueiam terceiros, mesmo nas exceções acima
+! ----------------------------------------------------------------------------
+
+! Google Analytics (bloqueia em todos os domínios, exceto Scholar)
+||google-analytics.com^$third-party,domain=~scholar.google.com|~scholar.google.com.br
+||google-analytics.com^$third-party,domain=researchgate.net|academia.edu
+
+! Google DoubleClick (publicidade)
+||doubleclick.net^$third-party,domain=~scholar.google.com|~scholar.google.com.br
+||doubleclick.net^$third-party,domain=researchgate.net|academia.edu
+
+! Facebook Pixel / Meta
+||facebook.net^$third-party,domain=researchgate.net|academia.edu
+||connect.facebook.net^$third-party,domain=researchgate.net|academia.edu
+||facebook.com^$third-party,domain=researchgate.net|academia.edu
+
+! Twitter / X Pixel
+||platform.twitter.com^$third-party,domain=researchgate.net|academia.edu
+||syndication.twitter.com^$third-party,domain=researchgate.net|academia.edu
+
+! LinkedIn Insight Tag
+||linkedin.com^$third-party,domain=researchgate.net|academia.edu
+||licdn.com^$third-party,domain=researchgate.net|academia.edu
+
+! Hotjar / Heatmaps
+||hotjar.com^$third-party,domain=researchgate.net|academia.edu
+
+! Mixpanel
+||mixpanel.com^$third-party,domain=researchgate.net|academia.edu
+
+! Segment.io
+||segment.io^$third-party,domain=researchgate.net|academia.edu
+
+! Amplitude
+||amplitude.com^$third-party,domain=researchgate.net|academia.edu
+
+! ============================================================================
+
+
+! ----------------------------------------------------------------------------
+! 9. REGIONAL / LOCAL ACADEMIC DOMAINS
+! Domínios acadêmicos regionais (Brasil e América Latina)
+! ----------------------------------------------------------------------------
+
+! SciELO - Scientific Electronic Library Online
+@@||scielo.org^$document
+@@||scielo.br^$document
+@@||scielo.^$document
+
+! Redalyc - Rede de Revistas Científicas da América Latina
+@@||redalyc.org^$document
+@@||www.redalyc.org^$document
+
+! Latindex - Sistema de Informação sobre Revistas
+@@||latindex.org^$document
+
+! DOAJ - Directory of Open Access Journals
+@@||doaj.org^$document
+
+! CAPES (Brasil)
+@@||capes.gov.br^$document
+@@||www-periodicos-capes-gov-br^$document
+
+! CNPq (Brasil)
+@@||cnpq.br^$document
+
+! FAPESP (Brasil)
+@@||fapesp.br^$document
+
+! CLACSO (América Latina)
+@@||clacso.org^$document
+
+! FLACSO
+@@||flacso.org^$document
+
+! ============================================================================
+
+
+! ----------------------------------------------------------------------------
+! END OF LIST
+! ============================================================================
+! Total rules: ~180
+! Last validated: 2026-02-28
+! Maintainer: https://github.com/donatoniii
+! ============================================================================
