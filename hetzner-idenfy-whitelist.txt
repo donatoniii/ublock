@@ -1,10 +1,9 @@
 ! ============================================================================
 ! Title: Hetzner & iDenfy Services Whitelist
-! Version: 2026.03.01.3
-! Description: PURE ALLOWLIST - Contains ONLY exception rules (@@) to permit
-!              Hetzner Cloud and iDenfy verification services. Zero blocking
-!              rules. Use this file to override aggressive privacy lists.
-!              If a domain is not listed here, your other filters apply normally.
+! Version: 2026.03.01.4
+! Description: PURE ALLOWLIST - ONLY @@ exception rules. Zero blocking rules.
+!              Use to override aggressive privacy filters for Hetzner Cloud 
+!              authentication and iDenfy identity verification flows.
 ! Homepage: https://github.com/donatoniii/ublock  
 ! Issues: https://github.com/donatoniii/ublock/issues  
 ! License: CC0-1.0
@@ -13,59 +12,29 @@
 ! Syntax: ublock
 ! ============================================================================
 
-! ----------------------------------------------------------------------------
-! HETZNER CORE - MAIN PAGE NAVIGATION ($document) + API ($xmlhttprequest)
-! ----------------------------------------------------------------------------
+! === HETZNER CORE - NAVIGATION & API ===
 @@||hetzner.com^$document,important
+@@||www.hetzner.com^$document,important
 @@||account.hetzner.com^$document,important
+@@||accounts.hetzner.com^$document,important
+@@||console.hetzner.com^$document,important
 @@||konsoleh.hetzner.com^$document,important
 @@||robot.hetzner.com^$document,important
 @@||api.hetzner.com^$xmlhttprequest,important
 @@||api.hetzner.cloud^$xmlhttprequest,important
-@@||docs.hetzner.com^$document,important
-@@||dns.hetzner.com^$important
-@@||storage.hetzner.com^$important
 @@||cdn.hetzner.com^$image,stylesheet,script,important
-@@||event.hetzner.com^$xmlhttprequest,important
-@@||developers.hetzner.com^$document,important
-@@||registrationrobot.hetzner.com^$document,important
+@@||docs.hetzner.com^$document,important
 @@||hetzner.cloud^$document,important
 @@||hetzner.de^$document,important
 
-! ----------------------------------------------------------------------------
-! IDENFY - IDENTITY VERIFICATION (CRITICAL FLOW)
-! ----------------------------------------------------------------------------
-@@||ivs.idenfy.com^$document,subdocument,xmlhttprequest,important,domain=hetzner.com|account.hetzner.com|konsoleh.hetzner.com
+! === IDENFY VERIFICATION (CRITICAL) ===
+@@||ivs.idenfy.com^$document,subdocument,xmlhttprequest,important,domain=hetzner.com|account.hetzner.com|console.hetzner.com
 @@||ivs.idenfy.com/api/v2/*$xmlhttprequest,important,domain=hetzner.com
-@@||api.idenfy.com^$xmlhttprequest,important
 @@||cdn.idenfy.com^$image,stylesheet,script,important
-@@||assets.idenfy.com^$image,stylesheet,font,important
-@@||static.idenfy.com^$important
-@@||documentation.idenfy.com^$document,important
-@@||help.idenfy.com^$document,important
+@@||assets.idenfy.com^$image,font,important
 
-! ----------------------------------------------------------------------------
-! THIRD-PARTY ESSENTIALS (NO BLOCKING, ONLY EXCEPTIONS)
-! ----------------------------------------------------------------------------
-! Google reCAPTCHA & Fonts
+! === ESSENTIAL THIRD-PARTY ===
 @@||www.google.com/recaptcha/*$script,important
 @@||www.gstatic.com/recaptcha/*$script,important
 @@||fonts.googleapis.com^$stylesheet,important
 @@||fonts.gstatic.com^$font,important
-
-! Cloudflare (CDN for verification assets)
-@@||cdnjs.cloudflare.com^$script,stylesheet,important
-@@||js.cloudflare.com^$script,important
-
-! Payment/Analytics (only if required by flow)
-@@||js.stripe.com^$script,important
-@@||www.paypal.com/sdk/js/*$script,important
-
-! ----------------------------------------------------------------------------
-! COSMETIC FILTERING EXCEPTIONS (prevents UI breakage)
-! ----------------------------------------------------------------------------
-! Disable cosmetic filtering on Hetzner domains to avoid hiding legitimate UI
-hetzner.com#@#body:has(.ads, .sponsor)
-account.hetzner.com#@#.ad-banner
-konsoleh.hetzner.com#@#.tracking-pixel
-ivs.idenfy.com#@#[data-ad-container]
