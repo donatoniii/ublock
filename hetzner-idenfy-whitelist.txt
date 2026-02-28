@@ -1,12 +1,10 @@
 ! ============================================================================
 ! Title: Hetzner & iDenfy Services Whitelist
-! Version: 2026.03.01.2
-! Description: Whitelist for Hetzner Cloud infrastructure and iDenfy identity 
-!              verification services to ensure authentication flows, document 
-!              verification iframes, and API connectivity function correctly.
-!              Covers core Hetzner domains, iDenfy verification endpoints, 
-!              and essential third-party dependencies (CDNs, reCAPTCHA, payment).
-!              Use with caution: only relax hardening rules for verified domains.
+! Version: 2026.03.01.3
+! Description: PURE ALLOWLIST - Contains ONLY exception rules (@@) to permit
+!              Hetzner Cloud and iDenfy verification services. Zero blocking
+!              rules. Use this file to override aggressive privacy lists.
+!              If a domain is not listed here, your other filters apply normally.
 ! Homepage: https://github.com/donatoniii/ublock  
 ! Issues: https://github.com/donatoniii/ublock/issues  
 ! License: CC0-1.0
@@ -16,61 +14,58 @@
 ! ============================================================================
 
 ! ----------------------------------------------------------------------------
-! HETZNER CORE INFRASTRUCTURE
+! HETZNER CORE - MAIN PAGE NAVIGATION ($document) + API ($xmlhttprequest)
 ! ----------------------------------------------------------------------------
-@@||hetzner.com^$important
-@@||account.hetzner.com^$important
-@@||api.hetzner.com^$important
-@@||api.hetzner.cloud^$important
-@@||robot.hetzner.com^$important
-@@||konsoleh.hetzner.com^$important
-@@||docs.hetzner.com^$important
+@@||hetzner.com^$document,important
+@@||account.hetzner.com^$document,important
+@@||konsoleh.hetzner.com^$document,important
+@@||robot.hetzner.com^$document,important
+@@||api.hetzner.com^$xmlhttprequest,important
+@@||api.hetzner.cloud^$xmlhttprequest,important
+@@||docs.hetzner.com^$document,important
 @@||dns.hetzner.com^$important
 @@||storage.hetzner.com^$important
-@@||cdn.hetzner.com^$important
-@@||event.hetzner.com^$important
-@@||developers.hetzner.com^$important
-@@||registrationrobot.hetzner.com^$important
-@@||hetzner.cloud^$important
-@@||hetzner.de^$important
+@@||cdn.hetzner.com^$image,stylesheet,script,important
+@@||event.hetzner.com^$xmlhttprequest,important
+@@||developers.hetzner.com^$document,important
+@@||registrationrobot.hetzner.com^$document,important
+@@||hetzner.cloud^$document,important
+@@||hetzner.de^$document,important
 
 ! ----------------------------------------------------------------------------
-! IDENFY - IDENTITY VERIFICATION SERVICE
+! IDENFY - IDENTITY VERIFICATION (CRITICAL FLOW)
 ! ----------------------------------------------------------------------------
-! Main verification iframe/redirect endpoint (CRITICAL)
-@@||ivs.idenfy.com^$important,domain=hetzner.com|account.hetzner.com
-@@||ivs.idenfy.com/api/v2/*$important,xmlhttprequest,domain=hetzner.com
-
-! iDenfy API, documentation and support assets
-@@||api.idenfy.com^$important
-@@||documentation.idenfy.com^$important
-@@||help.idenfy.com^$important
-@@||www.idenfy.com^$important
-@@||cdn.idenfy.com^$important
-@@||assets.idenfy.com^$important
+@@||ivs.idenfy.com^$document,subdocument,xmlhttprequest,important,domain=hetzner.com|account.hetzner.com|konsoleh.hetzner.com
+@@||ivs.idenfy.com/api/v2/*$xmlhttprequest,important,domain=hetzner.com
+@@||api.idenfy.com^$xmlhttprequest,important
+@@||cdn.idenfy.com^$image,stylesheet,script,important
+@@||assets.idenfy.com^$image,stylesheet,font,important
 @@||static.idenfy.com^$important
+@@||documentation.idenfy.com^$document,important
+@@||help.idenfy.com^$document,important
 
 ! ----------------------------------------------------------------------------
-! THIRD-PARTY DEPENDENCIES (ESSENTIAL FOR VERIFICATION FLOWS)
+! THIRD-PARTY ESSENTIALS (NO BLOCKING, ONLY EXCEPTIONS)
 ! ----------------------------------------------------------------------------
-! Google reCAPTCHA & fonts (used in Hetzner/iDenfy forms)
-@@||www.google.com/recaptcha/*$important
-@@||www.gstatic.com/recaptcha/*$important
-@@||fonts.googleapis.com^$important
-@@||fonts.gstatic.com^$important
+! Google reCAPTCHA & Fonts
+@@||www.google.com/recaptcha/*$script,important
+@@||www.gstatic.com/recaptcha/*$script,important
+@@||fonts.googleapis.com^$stylesheet,important
+@@||fonts.gstatic.com^$font,important
 
-! Cloudflare CDN (commonly used by verification services)
-@@||cloudflare.com^$important,third-party
-@@||cloudflareinsights.com^$important,third-party
+! Cloudflare (CDN for verification assets)
+@@||cdnjs.cloudflare.com^$script,stylesheet,important
+@@||js.cloudflare.com^$script,important
 
-! Payment processors (if verification requires payment step)
-@@||stripe.com^$important,third-party
-@@||paypal.com^$important,third-party
+! Payment/Analytics (only if required by flow)
+@@||js.stripe.com^$script,important
+@@||www.paypal.com/sdk/js/*$script,important
 
 ! ----------------------------------------------------------------------------
-! TLS/CONNECTIVITY EXCEPTIONS (for about:config or network policies)
+! COSMETIC FILTERING EXCEPTIONS (prevents UI breakage)
 ! ----------------------------------------------------------------------------
-! Allow TLS 1.2+ handshakes for verification domains
-! Note: These are comments for manual about:config adjustments:
-! security.tls.version.min = 3
-! network.trr.excluded-domains += ivs.idenfy.com,hetzner.com
+! Disable cosmetic filtering on Hetzner domains to avoid hiding legitimate UI
+hetzner.com#@#body:has(.ads, .sponsor)
+account.hetzner.com#@#.ad-banner
+konsoleh.hetzner.com#@#.tracking-pixel
+ivs.idenfy.com#@#[data-ad-container]
