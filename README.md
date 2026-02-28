@@ -27,6 +27,10 @@ Simultaneamente, **bloqueia analytics predatórios** mesmo em contextos acadêmi
 3. Role até **"Importar..."**
 4. Cole a URL abaixo:
 
+# URL simplificada (também funciona, mais limpa):
+https://raw.githubusercontent.com/donatoniii/ublock/main/academic-whitelist.txt
+
+# Para importação no uBlock (adicione o comentário opcional):
 https://raw.githubusercontent.com/donatoniii/ublock/main/academic-whitelist.txt#Academic Domains Whitelist
 
 5. Clique em **"Aplicar mudanças"** → **"Atualizar agora"**
