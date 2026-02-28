@@ -1,6 +1,6 @@
 ! ============================================================================
 ! Title: Hetzner & iDenfy Services Whitelist
-! Version: 2026.03.01.1
+! Version: 2026.03.01.2
 ! Description: Whitelist for Hetzner Cloud infrastructure and iDenfy identity 
 !              verification services to ensure authentication flows, document 
 !              verification iframes, and API connectivity function correctly.
@@ -15,74 +15,62 @@
 ! Syntax: ublock
 ! ============================================================================
 
+! ----------------------------------------------------------------------------
+! HETZNER CORE INFRASTRUCTURE
+! ----------------------------------------------------------------------------
+@@||hetzner.com^$important
+@@||account.hetzner.com^$important
+@@||api.hetzner.com^$important
+@@||api.hetzner.cloud^$important
+@@||robot.hetzner.com^$important
+@@||konsoleh.hetzner.com^$important
+@@||docs.hetzner.com^$important
+@@||dns.hetzner.com^$important
+@@||storage.hetzner.com^$important
+@@||cdn.hetzner.com^$important
+@@||event.hetzner.com^$important
+@@||developers.hetzner.com^$important
+@@||registrationrobot.hetzner.com^$important
+@@||hetzner.cloud^$important
+@@||hetzner.de^$important
 
-# hetzner-idenfy-whitelist.txt
-# Domínios para autenticação, verificação de identidade e APIs Hetzner
-# Atualizado: 2026-03-01
-# Fonte: docs.hetzner.com, documentation.idenfy.com, privacy policies
+! ----------------------------------------------------------------------------
+! IDENFY - IDENTITY VERIFICATION SERVICE
+! ----------------------------------------------------------------------------
+! Main verification iframe/redirect endpoint (CRITICAL)
+@@||ivs.idenfy.com^$important,domain=hetzner.com|account.hetzner.com
+@@||ivs.idenfy.com/api/v2/*$important,xmlhttprequest,domain=hetzner.com
 
-## === HETZNER CORE ===
-hetzner.com
-*.hetzner.com
-hetzner.cloud
-*.hetzner.cloud
-hetzner.de
-*.hetzner.de
-robot.hetzner.com
-konsoleh.hetzner.com
-docs.hetzner.com
-api.hetzner.com
-api.hetzner.cloud
-dns.hetzner.com
-storage.hetzner.com
-cdn.hetzner.com
-event.hetzner.com
-ntp.hetzner.com
-developers.hetzner.com
-account.hetzner.com
-registrationrobot.hetzner.com
+! iDenfy API, documentation and support assets
+@@||api.idenfy.com^$important
+@@||documentation.idenfy.com^$important
+@@||help.idenfy.com^$important
+@@||www.idenfy.com^$important
+@@||cdn.idenfy.com^$important
+@@||assets.idenfy.com^$important
+@@||static.idenfy.com^$important
 
-## === IDENFY - VERIFICAÇÃO DE IDENTIDADE ===
-# Endpoint principal de verificação (iframe/redirect)
-ivs.idenfy.com
-*.ivs.idenfy.com
+! ----------------------------------------------------------------------------
+! THIRD-PARTY DEPENDENCIES (ESSENTIAL FOR VERIFICATION FLOWS)
+! ----------------------------------------------------------------------------
+! Google reCAPTCHA & fonts (used in Hetzner/iDenfy forms)
+@@||www.google.com/recaptcha/*$important
+@@||www.gstatic.com/recaptcha/*$important
+@@||fonts.googleapis.com^$important
+@@||fonts.gstatic.com^$important
 
-# API e documentação
-documentation.idenfy.com
-*.documentation.idenfy.com
-help.idenfy.com
-*.help.idenfy.com
-api.idenfy.com
+! Cloudflare CDN (commonly used by verification services)
+@@||cloudflare.com^$important,third-party
+@@||cloudflareinsights.com^$important,third-party
 
-# Domínios de suporte e assets
-www.idenfy.com
-cdn.idenfy.com
-assets.idenfy.com
-static.idenfy.com
+! Payment processors (if verification requires payment step)
+@@||stripe.com^$important,third-party
+@@||paypal.com^$important,third-party
 
-## === TERCEIROS COMUNS EM FLUXOS HETZNER ===
-# Google APIs (recaptcha, fonts, analytics - usados em formulários)
-*.googleapis.com
-*.gstatic.com
-*.google.com/recaptcha/*
-
-# Cloudflare (CDN comum em serviços de verificação)
-*.cloudflare.com
-*.cloudflareinsights.com
-
-# Stripe/PayPal (se houver pagamento na verificação)
-*.stripe.com
-*.paypal.com
-
-## === REGRAS DE CONEXÃO (para about:config ou políticas corporativas) ===
-# Permitir TLS 1.2 e 1.3
-security.tls.version.min = 3
-security.tls.version.max = 4
-
-# Cipher suites essenciais (não desabilitar sem teste)
-# security.ssl3.rsa_aes_128_sha
-# security.ssl3.rsa_aes_256_sha
-# security.tls13.cipher suites (padrão)
-
-# DNS over HTTPS: permitir fallback para DNS tradicional em domínios críticos
-network.trr.mode = 2  # ou 0 para desativar DoH temporariamente para teste
+! ----------------------------------------------------------------------------
+! TLS/CONNECTIVITY EXCEPTIONS (for about:config or network policies)
+! ----------------------------------------------------------------------------
+! Allow TLS 1.2+ handshakes for verification domains
+! Note: These are comments for manual about:config adjustments:
+! security.tls.version.min = 3
+! network.trr.excluded-domains += ivs.idenfy.com,hetzner.com
