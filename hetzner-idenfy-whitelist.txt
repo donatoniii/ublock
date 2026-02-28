@@ -1,3 +1,21 @@
+! ============================================================================
+! Title: Hetzner & iDenfy Services Whitelist
+! Version: 2026.03.01.1
+! Description: Whitelist for Hetzner Cloud infrastructure and iDenfy identity 
+!              verification services to ensure authentication flows, document 
+!              verification iframes, and API connectivity function correctly.
+!              Covers core Hetzner domains, iDenfy verification endpoints, 
+!              and essential third-party dependencies (CDNs, reCAPTCHA, payment).
+!              Use with caution: only relax hardening rules for verified domains.
+! Homepage: https://github.com/donatoniii/ublock  
+! Issues: https://github.com/donatoniii/ublock/issues  
+! License: CC0-1.0
+! Expires: 1 day
+! Last modified: %timestamp%
+! Syntax: ublock
+! ============================================================================
+
+
 # hetzner-idenfy-whitelist.txt
 # Domínios para autenticação, verificação de identidade e APIs Hetzner
 # Atualizado: 2026-03-01
